@@ -1,6 +1,6 @@
 # Data Structures of HardWar U2.04
 
-The player's local entity pointer is dynamically allocated on offset
+The player entity pointer is stored on offset
 ```0x1471E4``` from the module base address. The player's cash variable,
 for example, would be accessed by the address at ```moduleBase + 0x1471E4 + 0x24```.
 Memory mappings of the player, moth, hangar, and cargo data structures can be found
