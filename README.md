@@ -13,7 +13,6 @@ in the tables below.
 | 0x14          | status          | BYTE           |
 | 0x18          | location*       | pointer        |
 | 0x24          | cash            | integer        |
-| 0x28          | pilotType       | BYTE           |
 
 The location pointer on offset ```0x18``` of the player data structure
 points to the address of the moth or hangar that the player
@@ -67,13 +66,13 @@ all have maximum values of 4000.
 | 0x30          | clearanceLvl     | integer       |
 | 0x38          | wantedList*      | pointer       |
 | 0x44          | owner*           | pointer       |
-| 0x31C         | bay[0]*          | pointer       |
-| 0x320         | bay[1]*          | pointer       |
-| 0x324         | bay[2]*          | pointer       |
-| 0x328         | bay[3]*          | pointer       |
-| 0x32C         | bay[4]*          | pointer       |
-| 0x330         | bay[5]*          | pointer       |
 | 0x300         | cashHeld         | integer       |
+| 0x31C         | bay0*            | pointer       |
+| 0x320         | bay1*            | pointer       |
+| 0x324         | bay2*            | pointer       |
+| 0x328         | bay3*            | pointer       |
+| 0x32C         | bay4*            | pointer       |
+| 0x330         | bay5*            | pointer       |
 
 The variable on offset ```0x0``` of the hangar data structure holds the name of the hangar,
 as viewed from the game's perspective. The next variable on offset ```0xC``` holds the
