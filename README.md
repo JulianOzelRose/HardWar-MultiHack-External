@@ -32,7 +32,7 @@ and a value of 4 means the player is awaiting a monorail.
 | 0x1D0         | hangar*          | pointer       |
 | 0x1D8         | pilot*           | pointer       |
 | 0x1F0         | target*          | pointer       |
-| 0x248         | hasSalvageDrone  | boolean       |
+| 0x1F4         | hasSalvageDrone  | boolean       |
 | 0x248         | weapon1Ammo      | integer       |
 | 0x24C         | weapon2Ammo      | integer       |
 | 0x250         | weapon3Ammo      | integer       |
