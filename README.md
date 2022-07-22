@@ -21,7 +21,7 @@ in the tables below.
 
 The location pointer on offset ```0x18``` of the player data structure
 points to the address of the moth or hangar that the player
-currently located. If the player is in a moth that is in a hangar,
+is currently located. If the player is in a moth located in a hangar,
 then the moth's address will be pointed to. If the player is on foot
 in a hangar, then the hangar's address will be pointed to. Dead players
 are teleported to the Limbo! hangar, where they remain on foot. For the
@@ -57,7 +57,7 @@ The hangar pointer on offset ```0x1D0``` of the moth data structure
 points to the address of the hangar that the moth is currently parked
 in, if applicable. The pilot pointer on offset ```0x1D8``` points to
 the address of the pilot. The target pointer on offset ```0x1F0```
-points to the address of the moth's current target -- this can be either
+points to the address of the moth's current target -- which can be either
 a hangar address or a moth address. The health and shield values on
 ```0x294```, ```0x298```, ```0x29C```, ```0x2A0```, ```0x2A4```, and ```0x2A8```
 all have maximum values of 4000.
