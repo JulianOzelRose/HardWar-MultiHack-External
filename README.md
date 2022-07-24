@@ -1,7 +1,8 @@
 # HardWar-MultiHack
 This program only modifies client sided variables. It cannot modify server sided variables,
-so it will not work on a networked game, unless it is run directly by the host. For educational purposes
-only.
+so it will not work on a networked game, unless it is run directly by the host. Works with
+game version U2.04 only. Includes invincibility, speedhack, infinite cash, instakill target,
+and stall negation. For educational purposes only.
 
 # Data Structures of HardWar U2.04
 
