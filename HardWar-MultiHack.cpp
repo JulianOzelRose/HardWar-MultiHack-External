@@ -15,7 +15,7 @@
 int main()
 {
 	// Memory offsets
-	std::vector<unsigned int> playerCashOffsets = {0x24};
+	std::vector<unsigned int> playerCashOffsets = {0x3C};
 	std::vector<unsigned int> playerStatusOffsets = {0x58};
 	std::vector<unsigned int> playerShieldOffsets = {0x30, 0x294};
 	std::vector<unsigned int> playerThrustOffsets = {0x30, 0x438};
