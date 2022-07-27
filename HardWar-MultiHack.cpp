@@ -16,7 +16,7 @@ int main()
 {
 	// Memory offsets
 	std::vector<unsigned int> cashOffsets = {0x3C};
-	std::vector<unsigned int> statusOffsets = {0x58};
+	std::vector<unsigned int> playerStatusOffsets = {0x58};
 	std::vector<unsigned int> shieldOffsets = {0x30, 0x294};
 	std::vector<unsigned int> thrustOffsets = {0x30, 0x438};
 	std::vector<unsigned int> stallWarningLvlOffsets = {0x30, 0x390};
@@ -40,8 +40,8 @@ int main()
 	uintptr_t thrustAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, thrustOffsets);
 	uintptr_t shieldAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, shieldOffsets);
 	uintptr_t cashAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, cashOffsets);
-	uintptr_t stallWarningLevelAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, stallWarningLvlOffsets);
-	uintptr_t statusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, statusOffsets);
+	uintptr_t stallWarningLvlAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, stallWarningLvlOffsets);
+	uintptr_t statusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStatusOffsets);
 	uintptr_t targetStructureDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetStructureDmgOffsets);
 	uintptr_t targetTypeAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetTypeOffsets);
 
@@ -89,9 +89,9 @@ int main()
 		}
 
 		// Stall negation
-		ReadProcessMemory(hProcess, (BYTE*)stallWarningLevelAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
 		if (stallWarningLvl > 0) {
-			WriteProcessMemory(hProcess, (BYTE*)stallWarningLevelAddress, &newStallWarningLvl, sizeof(newStallWarningLvl), nullptr);
+			WriteProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &newStallWarningLvl, sizeof(newStallWarningLvl), nullptr);
 			std::cout << "Stall detected and averted" << std::endl;
 		}
 
