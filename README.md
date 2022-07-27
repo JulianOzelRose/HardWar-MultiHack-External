@@ -73,12 +73,12 @@ all have maximum values of 0x4000 (or 16384 in decimal).
 | 0x03C         | employeeList*    | Pointer       |
 | 0x048         | owner*           | Pointer       |
 | 0x8BC         | cashHeld         | Integer       |
-| 0x8D8         | bay[0]*          | Pointer       |
-| 0x8DC         | bay[1]*          | Pointer       |
-| 0x8E0         | bay[2]*          | Pointer       |
-| 0x8E4         | bay[3]*          | Pointer       |
-| 0x8E8         | bay[4]*          | Pointer       |
-| 0x8EC         | bay[5]*          | Pointer       |
+| 0x8D8         | bay1*            | Pointer       |
+| 0x8DC         | bay2*            | Pointer       |
+| 0x8E0         | bay3*            | Pointer       |
+| 0x8E4         | bay4*            | Pointer       |
+| 0x8E8         | bay5*            | Pointer       |
+| 0x8EC         | bay6*            | Pointer       |
 
 The variable on offset ```0x004``` of the hangar data structure holds the name of the hangar,
 as viewed from the game's perspective. The next variable on offset ```0x010``` holds the
