@@ -21,7 +21,7 @@ int main()
 	std::vector<unsigned int> playerThrustOffsets = {0x30, 0x438};
 	std::vector<unsigned int> playerStallWarningLvlOffsets = {0x30, 0x390};
 	std::vector<unsigned int> currentTargetTypeOffsets = {0x30, 0x1EC};
-	std::vector<unsigned int> currentTargetStructureDmgOffsets = {0x30, 0x1F0, 0x1D8, 0x30, 0x29C};
+	std::vector<unsigned int> currentTargetStructureDmgOffsets = {0x30, 0x1F0, 0x29C};
 
 	// Game constants
 	const int MAX_SHIELDS = 16384;
