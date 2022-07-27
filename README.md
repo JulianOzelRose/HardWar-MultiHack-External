@@ -70,7 +70,7 @@ all have maximum values of 0x4000 (or 16384 in decimal).
 | 0x004         | terminalName     | String[32]    |
 | 0x010         | displayName      | String[32]    |
 | 0x034         | clearanceLvl     | Integer       |
-| 0x03C         | wantedList*      | Pointer       |
+| 0x03C         | enemiesList*     | Pointer       |
 | 0x048         | owner*           | Pointer       |
 | 0x8BC         | cashHeld         | Integer       |
 | 0x8D8         | bay1*            | Pointer       |
