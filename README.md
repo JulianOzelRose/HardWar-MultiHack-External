@@ -12,13 +12,13 @@ for example, would be stored on the address at ```moduleBase + 0x1471E4 + 0x24``
 Memory mappings of the player, moth, hangar, and cargo data structures can be found
 in the tables below.
 
-## Player structure ##
+## Player data structure ##
 | **Offset**    | **Variable**    | **Type**       |
 | :---          | :---            | :---           |
-| 0x0           | name            | string         |
+| 0x0           | name            | String[32]     |
 | 0x14          | status          | BYTE           |
-| 0x18          | location*       | pointer        |
-| 0x24          | cash            | integer        |
+| 0x18          | location*       | Pointer        |
+| 0x24          | cash            | Integer        |
 
 The location pointer on offset ```0x18``` of the player data structure
 points to the address of the moth or hangar that the player
@@ -31,27 +31,27 @@ is currently in a moth, a value of 2 means the player is in hangar or dead,
 and a value of 4 means the player is awaiting a monorail.
 
 
-## Moth structure ##
+## Moth data structure ##
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
-| 0x1D0         | hangar*          | pointer       |
-| 0x1D8         | pilot*           | pointer       |
-| 0x1F0         | target*          | pointer       |
-| 0x1F4         | hasSalvageDrone  | boolean       |
-| 0x248         | weapon1Ammo      | integer       |
-| 0x24C         | weapon2Ammo      | integer       |
-| 0x250         | weapon3Ammo      | integer       |
-| 0x254         | weapon4Ammo      | integer       |
+| 0x1D0         | hangar*          | Pointer       |
+| 0x1D8         | pilot*           | Pointer       |
+| 0x1F0         | target*          | Pointer       |
+| 0x1F4         | hasSalvageDrone  | Boolean       |
+| 0x248         | weapon1Ammo      | Integer       |
+| 0x24C         | weapon2Ammo      | Integer       |
+| 0x250         | weapon3Ammo      | Integer       |
+| 0x254         | weapon4Ammo      | Integer       |
 | 0x294         | shields          | DWORD         |
 | 0x298         | engineDamage     | DWORD         |
 | 0x29C         | structureDamage  | DWORD         |
 | 0x2A0         | cpuDamage        | DWORD         |
 | 0x2A4         | powerDamage      | DWORD         |
 | 0x2A8         | weaponsDamage    | DWORD         |
-| 0x368         | numFlares        | integer       |
-| 0x378         | numChaff         | integer       |
-| 0x37C         | numShells        | integer       |
-| 0x390         | stallWarningLvl  | integer       |
+| 0x368         | numFlares        | Integer       |
+| 0x378         | numChaff         | Integer       |
+| 0x37C         | numShells        | Integer       |
+| 0x390         | stallWarningLvl  | Integer       |
 | 0x438         | thrust           | DWORD         |
 
 The hangar pointer on offset ```0x1D0``` of the moth data structure
@@ -64,21 +64,21 @@ a hangar address or a moth address. The health and shield values on
 all have maximum values of 4000.
 
 
-## Hangar structure ##
+## Hangar data structure ##
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
-| 0x0           | terminalName     | string        |
-| 0xC           | displayName      | string        |
-| 0x30          | clearanceLvl     | integer       |
-| 0x38          | wantedList*      | pointer       |
-| 0x44          | owner*           | pointer       |
-| 0x300         | cashHeld         | integer       |
-| 0x31C         | bay0*            | pointer       |
-| 0x320         | bay1*            | pointer       |
-| 0x324         | bay2*            | pointer       |
-| 0x328         | bay3*            | pointer       |
-| 0x32C         | bay4*            | pointer       |
-| 0x330         | bay5*            | pointer       |
+| 0x0           | terminalName     | String[32]    |
+| 0xC           | displayName      | String[32]    |
+| 0x30          | clearanceLvl     | Integer       |
+| 0x38          | wantedList*      | Pointer       |
+| 0x44          | owner*           | Pointer       |
+| 0x300         | cashHeld         | Integer       |
+| 0x31C         | bay[0]*          | Pointer       |
+| 0x320         | bay[1]*          | Pointer       |
+| 0x324         | bay[2]*          | Pointer       |
+| 0x328         | bay[3]*          | Pointer       |
+| 0x32C         | bay[4]*          | Pointer       |
+| 0x330         | bay[5]*          | Pointer       |
 
 The variable on offset ```0x0``` of the hangar data structure holds the name of the hangar,
 as viewed from the game's perspective. The next variable on offset ```0xC``` holds the
@@ -89,12 +89,12 @@ to be restricted from human pilots. The hangar bay pointers on offsets ```0x31C`
 of the moth that is currently in that bay.
 
 
-## Cargo structure ##
+## Cargo data structure ##
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
-| 0x4           | quantity         | integer       |
-| 0x8           | status           | integer       |
-| 0xC           | location*        | pointer       |
+| 0x4           | quantity         | Integer       |
+| 0x8           | status           | Integer       |
+| 0xC           | location*        | Pointer       |
 
 The status variable on offset ```0x8``` of the cargo structure is set to 0 if the cargo
 is located outdoors, and gets set to 1 if the cargo is located in a cargo pod. The pointer
