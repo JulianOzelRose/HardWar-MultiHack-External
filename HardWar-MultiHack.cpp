@@ -1,7 +1,7 @@
 /*
 	HardWar-MultiHack
 	by Julian Rose
-	7-17-2022
+	7-26-2022
 */
 
 #include <iostream>
@@ -16,12 +16,12 @@ int main()
 {
 	// Memory offsets
 	std::vector<unsigned int> playerCashOffsets = {0x24};
-	std::vector<unsigned int> playerStatusOffsets = {0x40};
-	std::vector<unsigned int> playerShieldOffsets = {0x18, 0x294};
-	std::vector<unsigned int> playerThrustOffsets = {0x18, 0x438};
-	std::vector<unsigned int> playerStallWarningLevelOffsets = {0x18, 0x390};
-	std::vector<unsigned int> currentTargetTypeOffsets = {0x18, 0x1EC};
-	std::vector<unsigned int> currentTargetStructureDmgOffsets = {0x18, 0x1F0, 0x1D8, 0x18, 0x29C};
+	std::vector<unsigned int> playerStatusOffsets = {0x58};
+	std::vector<unsigned int> playerShieldOffsets = {0x30, 0x294};
+	std::vector<unsigned int> playerThrustOffsets = {0x30, 0x438};
+	std::vector<unsigned int> playerStallWarningLvlOffsets = {0x30, 0x390};
+	std::vector<unsigned int> currentTargetTypeOffsets = {0x30, 0x1EC};
+	std::vector<unsigned int> currentTargetStructureDmgOffsets = {0x30, 0x1F0, 0x1D8, 0x30, 0x29C};
 
 	// Game constants
 	const int MAX_SHIELDS = 16384;
@@ -34,21 +34,21 @@ int main()
 	DWORD processId = GetProcessId(L"HardwarW.exe");
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, processId);
 	uintptr_t moduleBase = GetModuleBaseAddress(processId, L"HardwarW.exe");
-	uintptr_t dynamicPtrBaseAddress = moduleBase + (0x1471E4);
+	uintptr_t dynamicPtrBaseAddress = moduleBase + 0x11D9AC;
 
 	// Get memory addresses
 	uintptr_t playerThrustAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerThrustOffsets);
 	uintptr_t playerShieldAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerShieldOffsets);
 	uintptr_t playerCashAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerCashOffsets);
-	uintptr_t playerStallWarningLevelAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStallWarningLevelOffsets);
+	uintptr_t playerStallWarningLevelAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStallWarningLvlOffsets);
 	uintptr_t playerStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStatusOffsets);
 	uintptr_t currentTargetStructureDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, currentTargetStructureDmgOffsets);
 	uintptr_t currentTargetTypeAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, currentTargetTypeOffsets);
 
 	// Game variables
 	int newThrust = 150000;
-	int stallWarningLevel;
-	int newStallWarningLevel = 0;
+	int stallWarningLvl;
+	int newStallWarningLvl = 0;
 	int currentTargetStructureDmg;
 	int currentTargetType;
 	int currentShields;
@@ -62,7 +62,8 @@ int main()
 		std::cout << "HardWar game process not found, please restart hack with HardWar running." << std::endl;
 		Sleep(10000);
 		exit(0);
-	} else {
+	}
+	else {
 		std::cout << "HardWar-MultiHack running..." << std::endl;
 	}
 
@@ -87,9 +88,9 @@ int main()
 		}
 
 		// Stall negation
-		ReadProcessMemory(hProcess, (BYTE*)playerStallWarningLevelAddress, &stallWarningLevel, sizeof(stallWarningLevel), nullptr);
-		if (stallWarningLevel > 0) {
-			WriteProcessMemory(hProcess, (BYTE*)playerStallWarningLevelAddress, &newStallWarningLevel, sizeof(newStallWarningLevel), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)playerStallWarningLevelAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
+		if (stallWarningLvl > 0) {
+			WriteProcessMemory(hProcess, (BYTE*)playerStallWarningLevelAddress, &newStallWarningLvl, sizeof(newStallWarningLvl), nullptr);
 			std::cout << "Stall detected and averted" << std::endl;
 		}
 
@@ -114,7 +115,7 @@ int main()
 			Sleep(10000);
 			exit(0);
 		}
-		
+
 		// Infinite cash
 		ReadProcessMemory(hProcess, (BYTE*)playerCashAddress, &playerCash, sizeof(playerCash), nullptr);
 		if (playerCash < MAX_CASH) {

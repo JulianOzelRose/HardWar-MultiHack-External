@@ -1,7 +1,7 @@
 /*
 	HardWar-MultiHack
 	by Julian Rose
-	7-17-2022
+	7-26-2022
 */
 
 #include "HackProcess.h"
