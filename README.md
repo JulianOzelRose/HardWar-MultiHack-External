@@ -39,7 +39,7 @@ and a value of 4 means the player is awaiting a monorail.
 | 0x1D0         | hangar*          | Pointer       |
 | 0x1D8         | owner*           | Pointer       |
 | 0x1F0         | target*          | Pointer       |
-| 0x1F4         | droneStatus      | Integer       |
+| 0x1F4         | droneType        | Integer       |
 | 0x200         | engineNum        | Integer       |
 | 0x204         | cellNum          | Integer       |
 | 0x208         | podType          | Integer       |
