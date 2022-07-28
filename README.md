@@ -34,9 +34,10 @@ and a value of 4 means the player is awaiting a monorail.
 ## Moth data structure ##
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
-| 0x0B8         | autopilotVersion | DWORD         |
+| 0x0B8         | softwareVersion1 | DWORD         |
+| 0x0BC         | softwareVersion2 | DWORD         |
 | 0x1D0         | hangar*          | Pointer       |
-| 0x1D8         | pilot*           | Pointer       |
+| 0x1D8         | owner*           | Pointer       |
 | 0x1F0         | target*          | Pointer       |
 | 0x1F4         | hasSalvageDrone  | Boolean       |
 | 0x200         | engineNum        | Integer       |
@@ -49,6 +50,8 @@ and a value of 4 means the player is awaiting a monorail.
 | 0x254         | weapon4Ammo      | Integer       |
 | 0x294         | shields          | DWORD         |
 | 0x298         | engineDamage     | DWORD         |
+| 0x2DC         | pilot*           | Pointer       |
+| 0x2E0         | passenger*       | Pointer       |
 | 0x29C         | structureDamage  | DWORD         |
 | 0x2A0         | cpuDamage        | DWORD         |
 | 0x2A4         | powerDamage      | DWORD         |
@@ -61,7 +64,7 @@ and a value of 4 means the player is awaiting a monorail.
 
 The hangar pointer on offset ```0x1D0``` of the moth data structure
 points to the address of the hangar that the moth is currently parked
-in, if applicable. The pilot pointer on offset ```0x1D8``` points to
+in, if applicable. The pilot pointer on offset ```0x2DC``` points to
 the address of the pilot. The target pointer on offset ```0x1F0```
 points to the address of the moth's current target -- which can be either
 a hangar address or a moth address. The health and shield values on
