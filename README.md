@@ -34,10 +34,15 @@ and a value of 4 means the player is awaiting a monorail.
 ## Moth data structure ##
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
+| 0x0B8         | autopilotVersion | DWORD         |
 | 0x1D0         | hangar*          | Pointer       |
 | 0x1D8         | pilot*           | Pointer       |
 | 0x1F0         | target*          | Pointer       |
 | 0x1F4         | hasSalvageDrone  | Boolean       |
+| 0x200         | engine           | Integer       |
+| 0x204         | cell             | Integer       |
+| 0x208         | pod              | Integer       |
+| 0x20C         | currentWeapon    | Integer       |
 | 0x248         | weapon1Ammo      | Integer       |
 | 0x24C         | weapon2Ammo      | Integer       |
 | 0x250         | weapon3Ammo      | Integer       |
