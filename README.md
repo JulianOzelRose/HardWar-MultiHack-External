@@ -32,35 +32,35 @@ and a value of 4 means the player is awaiting a monorail.
 
 
 ## Moth data structure ##
-| **Offset**    | **Variable**     | **Type**      |
-| :---          | :---             | :---          |
-| 0x0B8         | softwareVersion1 | DWORD         |
-| 0x0BC         | softwareVersion2 | DWORD         |
-| 0x1D0         | hangar*          | Pointer       |
-| 0x1D8         | owner*           | Pointer       |
-| 0x1F0         | target*          | Pointer       |
-| 0x1F4         | droneType        | Integer       |
-| 0x200         | engineNum        | Integer       |
-| 0x204         | cellNum          | Integer       |
-| 0x208         | podType          | Integer       |
-| 0x20C         | currentWeapon    | Integer       |
-| 0x248         | weapon1Ammo      | Integer       |
-| 0x24C         | weapon2Ammo      | Integer       |
-| 0x250         | weapon3Ammo      | Integer       |
-| 0x254         | weapon4Ammo      | Integer       |
-| 0x294         | shields          | DWORD         |
-| 0x298         | engineDamage     | DWORD         |
-| 0x2DC         | pilot*           | Pointer       |
-| 0x2E0         | passenger*       | Pointer       |
-| 0x29C         | structureDamage  | DWORD         |
-| 0x2A0         | cpuDamage        | DWORD         |
-| 0x2A4         | powerDamage      | DWORD         |
-| 0x2A8         | weaponsDamage    | DWORD         |
-| 0x368         | numFlares        | Integer       |
-| 0x378         | numChaff         | Integer       |
-| 0x37C         | numShells        | Integer       |
-| 0x390         | stallWarningLvl  | Integer       |
-| 0x438         | thrust           | DWORD         |
+| **Offset**    | **Variable**    | **Type**      |
+| :---          | :---            | :---          |
+| 0x0B8         | systemUpgrades1 | DWORD         |
+| 0x0BC         | systemUpgrades2 | DWORD         |
+| 0x1D0         | hangar*         | Pointer       |
+| 0x1D8         | owner*          | Pointer       |
+| 0x1F0         | target*         | Pointer       |
+| 0x1F4         | droneType       | Integer       |
+| 0x200         | engineNum       | Integer       |
+| 0x204         | cellNum         | Integer       |
+| 0x208         | podType         | Integer       |
+| 0x20C         | currentWeapon   | Integer       |
+| 0x248         | weapon1Ammo     | Integer       |
+| 0x24C         | weapon2Ammo     | Integer       |
+| 0x250         | weapon3Ammo     | Integer       |
+| 0x254         | weapon4Ammo     | Integer       |
+| 0x294         | shields         | DWORD         |
+| 0x298         | engineDamage    | DWORD         |
+| 0x2DC         | pilot*          | Pointer       |
+| 0x2E0         | passenger*      | Pointer       |
+| 0x29C         | structureDamage | DWORD         |
+| 0x2A0         | cpuDamage       | DWORD         |
+| 0x2A4         | powerDamage     | DWORD         |
+| 0x2A8         | weaponsDamage   | DWORD         |
+| 0x368         | numFlares       | Integer       |
+| 0x378         | numChaff        | Integer       |
+| 0x37C         | numShells       | Integer       |
+| 0x390         | stallWarningLvl | Integer       |
+| 0x438         | thrust          | DWORD         |
 
 The hangar pointer on offset ```0x1D0``` of the moth data structure
 points to the address of the hangar that the moth is currently parked
@@ -69,7 +69,10 @@ the address of the pilot. The target pointer on offset ```0x1F0```
 points to the address of the moth's current target -- which can be either
 a hangar address or a moth address. The health and shield values on
 ```0x294```, ```0x298```, ```0x29C```, ```0x2A0```, ```0x2A4```, and ```0x2A8```
-all have maximum values of 0x4000 (or 16384 in decimal).
+all have maximum values of 0x4000 (or 16384 in decimal). The hex value on
+```0x0B8``` stores the autopilot, flight, power, and shield system versions.
+The hex value on ```0x0BC``` stores the navigation, radar, target, and
+infrared system versions.
 
 
 ## Hangar data structure ##
