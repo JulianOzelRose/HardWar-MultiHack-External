@@ -46,7 +46,7 @@ int main()
 	uintptr_t targetTypeAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetTypeOffsets);
 
 	// Game variables
-	DWORD newThrust = MAX_THRUST + 0x249F0;
+	DWORD newThrust = MAX_THRUST*6;
 	DWORD targetStructureDmg;
 	DWORD shields;
 	BYTE playerStatus = 0;
