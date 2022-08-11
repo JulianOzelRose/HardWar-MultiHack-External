@@ -34,7 +34,8 @@ int main()
 	DWORD processId = GetProcessId(L"HardwarW.exe");
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, processId);
 	uintptr_t moduleBase = GetModuleBaseAddress(processId, L"HardwarW.exe");
-	uintptr_t dynamicPtrBaseAddress = moduleBase + 0x11D9AC;
+	uintptr_t playerBase = 0x11D9AC;
+	uintptr_t dynamicPtrBaseAddress = moduleBase + playerBase;
 
 	// Get memory addresses
 	uintptr_t thrustAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, thrustOffsets);
