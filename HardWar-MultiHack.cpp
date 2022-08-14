@@ -17,7 +17,6 @@ int main()
 	// Memory offsets
 	std::vector<unsigned int> cashOffset = {0x03C};
 	std::vector<unsigned int> playerStatusOffset = {0x02C};
-	std::vector<unsigned int> locationOffset = {0x030};
 	std::vector<unsigned int> shieldOffsets = {0x030, 0x294};
 	std::vector<unsigned int> thrustOffsets = {0x030, 0x438};
 	std::vector<unsigned int> stallWarningLvlOffsets = {0x030, 0x390};
@@ -94,9 +93,7 @@ int main()
 		while (!hwWindow) {
 			std::cout << "Game process not found..." << std::endl;
 			Sleep(2000);
-
 			hwWindow = FindWindow(0, _T("Hardwar"));
-
 			if (hwWindow) {
 				processId = GetProcessId(L"HardwarW.exe");
 				hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, processId);
@@ -131,6 +128,14 @@ int main()
 		}
 		if ((newPlayerStatus == 2) && (newPlayerStatus != playerStatus)) {
 			std::cout << "Player is now in a hangar" << std::endl;
+			playerStatus = newPlayerStatus;
+		}
+		if ((newPlayerStatus == 4) && (newPlayerStatus != playerStatus)) {
+			std::cout << "Player is now awaiting a monorail" << std::endl;
+			playerStatus = newPlayerStatus;
+		}
+		if ((newPlayerStatus == 6) && (newPlayerStatus != playerStatus)) {
+			std::cout << "Player is now in a walkway" << std::endl;
 			playerStatus = newPlayerStatus;
 		}
 
@@ -169,7 +174,7 @@ int main()
 		// Instakill targeted pilot
 		ReadProcessMemory(hProcess, (BYTE*)targetTypeAddress, &targetType, sizeof(targetType), nullptr);
 		ReadProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &targetStructureDmg, sizeof(targetStructureDmg), nullptr);
-		if (((targetType == 1) && (targetStructureDmg != MAX_DMG)) && (playerStatus == 1) && (mothStatus != IN_HANGAR)) {
+		if ((targetType == 1) && (targetStructureDmg != MAX_DMG) && (playerStatus == 1) && (mothStatus != IN_HANGAR)) {
 			WriteProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &MAX_DMG, sizeof(MAX_DMG), nullptr);
 			std::cout << "Pilot detected and destroyed" << std::endl;
 		}
