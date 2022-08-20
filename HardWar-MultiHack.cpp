@@ -32,13 +32,14 @@ int main()
 	// Game constants
 	const int MAX_CASH = 999999999;
 	const int IN_MOTH = 1;
+	const DWORD IN_HANGAR = 0x7FFF;
 	const DWORD MAX_SHIELDS = 0x4000;
 	const DWORD MAX_DMG = 0x4000;
 	const DWORD MAX_THRUST = 0x4000;
-	const DWORD IN_HANGAR = 0x7FFF;
 	const DWORD MAX_HEALTH = 0x0;
 	const DWORD NO_STALL = 0x0;
 	const DWORD TYPE_MOTH = 0x3FFF;
+	const DWORD TYPE_BLDG = 0x3E8;
 
 	// Open process
 	HWND hwWindow = FindWindow(0, _T("Hardwar"));
@@ -53,7 +54,7 @@ int main()
 	uintptr_t shieldAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, shieldOffsets);
 	uintptr_t cashAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, cashOffset);
 	uintptr_t stallWarningLvlAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, stallWarningLvlOffsets);
-	uintptr_t statusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStatusOffset);
+	uintptr_t playerStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStatusOffset);
 	uintptr_t targetStructureDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetStructureDmgOffsets);
 	uintptr_t targetTypeAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetTypeOffsets);
 	uintptr_t engineDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, engineDmgOffsets);
@@ -65,7 +66,6 @@ int main()
 	uintptr_t playerAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, {0});
 
 	// Game variables
-	DWORD newThrust = MAX_THRUST*6;
 	DWORD thrust;
 	DWORD shields;
 	DWORD engineDmg;
@@ -76,10 +76,9 @@ int main()
 	DWORD targetStatus;
 	DWORD targetType;
 	DWORD targetStructureDmg;
+	DWORD stallWarningLvl;
+	DWORD newThrust = MAX_THRUST * 6;
 	BYTE playerStatus = 2;
-	BYTE newPlayerStatus = 0;
-	int stallWarningLvl;
-
 	int cash;
 	
 	system("color A");
@@ -115,7 +114,7 @@ int main()
 		shieldAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, shieldOffsets);
 		cashAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, cashOffset);
 		stallWarningLvlAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, stallWarningLvlOffsets);
-		statusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStatusOffset);
+		playerStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, playerStatusOffset);
 		targetStructureDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetStructureDmgOffsets);
 		targetTypeAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetTypeOffsets);
 		engineDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, engineDmgOffsets);
@@ -126,34 +125,9 @@ int main()
 		targetStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetStatusOffsets);
 		playerAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, {0});
 
-		// Check & report player status
-		ReadProcessMemory(hProcess, (BYTE*)statusAddress, &newPlayerStatus, sizeof(newPlayerStatus), nullptr);
+		// Update player & target status
+		ReadProcessMemory(hProcess, (BYTE*)playerStatusAddress, &playerStatus, sizeof(playerStatus), nullptr);
 		ReadProcessMemory(hProcess, (BYTE*)targetStatusAddress, &targetStatus, sizeof(targetStatus), nullptr);
-		if ((newPlayerStatus == 1) && (newPlayerStatus != playerStatus))
-		{
-			std::cout << "Player is now in a moth" << std::endl;
-			playerStatus = newPlayerStatus;
-		}
-		if ((newPlayerStatus == 2) && (newPlayerStatus != playerStatus))
-		{
-			std::cout << "Player is now on foot in a hangar" << std::endl;
-			playerStatus = newPlayerStatus;
-		}
-		if ((newPlayerStatus == 3) && (newPlayerStatus != playerStatus))
-		{
-			std::cout << "Player is now in a monorail" << std::endl;
-			playerStatus = newPlayerStatus;
-		}
-		if ((newPlayerStatus == 4) && (newPlayerStatus != playerStatus))
-		{
-			std::cout << "Player is now awaiting a monorail" << std::endl;
-			playerStatus = newPlayerStatus;
-		}
-		if ((newPlayerStatus == 6) && (newPlayerStatus != playerStatus))
-		{
-			std::cout << "Player is now in a walkway" << std::endl;
-			playerStatus = newPlayerStatus;
-		}
 
 		// Invincibility
 		ReadProcessMemory(hProcess, (BYTE*)shieldAddress, &shields, sizeof(shields), nullptr);	
