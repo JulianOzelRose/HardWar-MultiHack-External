@@ -1,9 +1,3 @@
-/*
-	HardWar-MultiHack
-	by Julian Rose
-	7-26-2022
-*/
-
 #pragma once
 #include <Windows.h>
 #include <tchar.h>
