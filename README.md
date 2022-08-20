@@ -26,9 +26,11 @@ is currently located. If the player is in a moth located in a hangar,
 then the moth's address will be pointed to. If the player is on foot
 in a hangar, then the hangar's address will be pointed to. Dead players
 are teleported to the Limbo! hangar, where they remain on foot. For the
-player status variable on offset ```0x058```, a value of 1 means the player
-is currently in a moth, a value of 2 means the player is in hangar or dead,
-and a value of 4 means the player is awaiting a monorail.
+player status variable on offset ```0x058```, a value of 0 means the player
+is dead, a value of 1 indicates the player is in a moth, a value of 2 means
+the player is on foot in a hangar, a value of 3 means the player is in a
+monorail car, a value of 4 means the player is awaiting a monorail car,
+and a value of 5 means the player is in a walkway.
 
 
 ## Moth data structure ##
