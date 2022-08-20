@@ -27,7 +27,7 @@ int main()
 	std::vector<unsigned int> cpuDmgOffsets = {0x030, 0x2A0};
 	std::vector<unsigned int> powerDmgOffsets = {0x030, 0x2A4};
 	std::vector<unsigned int> weaponsDmgOffsets = {0x030, 0x2A8};
-	std::vector<unsigned int> mothStatusOffsets = {0x030, 0x1D4};
+	std::vector<unsigned int> targetStatusOffsets = {0x030, 0x1D4};
 
 	// Game constants
 	const int MAX_CASH = 999999999;
@@ -61,7 +61,7 @@ int main()
 	uintptr_t cpuDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, cpuDmgOffsets);
 	uintptr_t powerDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, powerDmgOffsets);
 	uintptr_t weaponsDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, weaponsDmgOffsets);
-	uintptr_t mothStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, mothStatusOffsets);
+	uintptr_t targetStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetStatusOffsets);
 	uintptr_t playerAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, {0});
 
 	// Game variables
@@ -74,7 +74,7 @@ int main()
 	DWORD cpuDmg;
 	DWORD powerDmg;
 	DWORD weaponsDmg;
-	DWORD mothStatus;
+	DWORD targetStatus;
 	BYTE playerStatus = 2;
 	BYTE newPlayerStatus = 0;
 	int stallWarningLvl;
@@ -122,12 +122,12 @@ int main()
 		cpuDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, cpuDmgOffsets);
 		powerDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, powerDmgOffsets);
 		weaponsDmgAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, weaponsDmgOffsets);
-		mothStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, mothStatusOffsets);
+		targetStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, targetStatusOffsets);
 		playerAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, {0});
 
 		// Check & report player status
 		ReadProcessMemory(hProcess, (BYTE*)statusAddress, &newPlayerStatus, sizeof(newPlayerStatus), nullptr);
-		ReadProcessMemory(hProcess, (BYTE*)mothStatusAddress, &mothStatus, sizeof(mothStatus), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)targetStatusAddress, &targetStatus, sizeof(targetStatus), nullptr);
 		if ((newPlayerStatus == 1) && (newPlayerStatus != playerStatus))
 		{
 			std::cout << "Player is now in a moth" << std::endl;
@@ -195,7 +195,7 @@ int main()
 		// Instakill targeted pilot
 		ReadProcessMemory(hProcess, (BYTE*)targetTypeAddress, &targetType, sizeof(targetType), nullptr);
 		ReadProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &targetStructureDmg, sizeof(targetStructureDmg), nullptr);
-		if ((targetType == 1) && (targetStructureDmg != MAX_DMG) && (playerStatus == IN_MOTH) && (mothStatus != IN_HANGAR))
+		if ((targetType == 1) && (targetStructureDmg != MAX_DMG) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &MAX_DMG, sizeof(MAX_DMG), nullptr);
 			std::cout << "Pilot detected and destroyed" << std::endl;
@@ -203,14 +203,14 @@ int main()
 
 		// Speedhack
 		ReadProcessMemory(hProcess, (BYTE*)thrustAddress, &thrust, sizeof(thrust), nullptr);
-		if ((playerStatus == IN_MOTH) && (mothStatus != IN_HANGAR))
+		if ((playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)thrustAddress, &newThrust, sizeof(newThrust), nullptr);
 		}
 
 		// Stall negation
 		ReadProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
-		if ((stallWarningLvl > 0) && (playerStatus == IN_MOTH) && (mothStatus != IN_HANGAR))
+		if ((stallWarningLvl > 0) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &NO_STALL, sizeof(NO_STALL), nullptr);
 			std::cout << "Stall detected and averted" << std::endl;
