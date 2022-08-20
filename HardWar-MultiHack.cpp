@@ -20,7 +20,6 @@ int main()
 	std::vector<unsigned int> shieldOffsets = {0x030, 0x294};
 	std::vector<unsigned int> thrustOffsets = {0x030, 0x438};
 	std::vector<unsigned int> stallWarningLvlOffsets = {0x030, 0x390};
-	std::vector<unsigned int> targetTypeOffsets = {0x030, 0x1EC};
 	std::vector<unsigned int> targetStructureDmgOffsets = {0x030, 0x1F0, 0x29C};
 	std::vector<unsigned int> engineDmgOffsets = {0x030, 0x298};
 	std::vector<unsigned int> structureDmgOffsets = {0x030, 0x29C};
@@ -28,6 +27,7 @@ int main()
 	std::vector<unsigned int> powerDmgOffsets = {0x030, 0x2A4};
 	std::vector<unsigned int> weaponsDmgOffsets = {0x030, 0x2A8};
 	std::vector<unsigned int> targetStatusOffsets = {0x030, 0x1D4};
+	std::vector<unsigned int> targetTypeOffsets = {0x030, 0x1F0, 0x0};
 
 	// Game constants
 	const int MAX_CASH = 999999999;
@@ -66,7 +66,6 @@ int main()
 
 	// Game variables
 	DWORD newThrust = MAX_THRUST*6;
-	DWORD targetStructureDmg;
 	DWORD thrust;
 	DWORD shields;
 	DWORD engineDmg;
@@ -75,10 +74,12 @@ int main()
 	DWORD powerDmg;
 	DWORD weaponsDmg;
 	DWORD targetStatus;
+	DWORD targetType;
+	DWORD targetStructureDmg;
 	BYTE playerStatus = 2;
 	BYTE newPlayerStatus = 0;
 	int stallWarningLvl;
-	int targetType;
+
 	int cash;
 	
 	system("color A");
@@ -195,7 +196,7 @@ int main()
 		// Instakill targeted pilot
 		ReadProcessMemory(hProcess, (BYTE*)targetTypeAddress, &targetType, sizeof(targetType), nullptr);
 		ReadProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &targetStructureDmg, sizeof(targetStructureDmg), nullptr);
-		if ((targetType == 1) && (targetStructureDmg != MAX_DMG) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
+		if ((targetType == TYPE_MOTH) && (targetStructureDmg != MAX_DMG) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &MAX_DMG, sizeof(MAX_DMG), nullptr);
 			std::cout << "Pilot detected and destroyed" << std::endl;
@@ -210,7 +211,7 @@ int main()
 
 		// Stall negation
 		ReadProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
-		if ((stallWarningLvl > 0) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
+		if ((stallWarningLvl > NO_STALL) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &NO_STALL, sizeof(NO_STALL), nullptr);
 			std::cout << "Stall detected and averted" << std::endl;
