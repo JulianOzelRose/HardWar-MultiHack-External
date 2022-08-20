@@ -37,6 +37,7 @@ and a value of 4 means the player is awaiting a monorail.
 | 0x0B8         | systemUpgrades1 | DWORD         |
 | 0x0BC         | systemUpgrades2 | DWORD         |
 | 0x1D0         | hangar*         | Pointer       |
+| 0x1D4         | status          | DWORD         |
 | 0x1D8         | owner*          | Pointer       |
 | 0x1F0         | target*         | Pointer       |
 | 0x1F4         | droneType       | Integer       |
