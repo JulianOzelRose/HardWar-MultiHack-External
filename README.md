@@ -1,4 +1,4 @@
-# HardWar-MultiHack-Internal
+# HardWar-MultiHack-External
 This program only modifies client sided variables. It cannot modify server sided variables,
 so it will not work on a networked game, unless it is run directly by the host. Works with
 game version UIM6. Includes invincibility, speedhack, infinite cash, instakill target,
