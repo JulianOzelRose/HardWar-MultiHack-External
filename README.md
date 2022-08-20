@@ -1,10 +1,10 @@
-# HardWar-MultiHack
+# HardWar-MultiHack-Internal
 This program only modifies client sided variables. It cannot modify server sided variables,
 so it will not work on a networked game, unless it is run directly by the host. Works with
 game version UIM6. Includes invincibility, speedhack, infinite cash, instakill target,
 and stall negation. For educational purposes only.
 
-# Data Structures of HardWar UIM6
+# Data structures of HardWar UIM6
 
 The player entity pointer is stored on offset
 ```0x11D9AC``` from the module's base address. The player's cash variable,
@@ -52,6 +52,7 @@ and a value of 4 means the player is awaiting a monorail.
 | 0x298         | engineDamage    | DWORD         |
 | 0x2DC         | pilot*          | Pointer       |
 | 0x2E0         | passenger*      | Pointer       |
+| 0x2E4         | autopilotStatus | BYTE          |
 | 0x29C         | structureDamage | DWORD         |
 | 0x2A0         | cpuDamage       | DWORD         |
 | 0x2A4         | powerDamage     | DWORD         |
