@@ -16,8 +16,8 @@ in the tables below.
 | **Offset**     | **Variable**    | **Type**       |
 | :---           | :---            | :---           |
 | 0x004          | name            | String[32]     |
-| 0x030          | location*       | Pointer        |
 | 0x02C          | status          | Integer        |
+| 0x030          | location*       | Pointer        |
 | 0x03C          | cash            | Integer        |
 
 The location pointer on offset ```0x030``` of the player data structure
