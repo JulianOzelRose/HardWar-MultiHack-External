@@ -17,8 +17,8 @@ in the tables below.
 | :---           | :---            | :---           |
 | 0x004          | name            | String[32]     |
 | 0x030          | location*       | Pointer        |
+| 0x02C          | status          | Integer        |
 | 0x03C          | cash            | Integer        |
-| 0x058          | status          | BYTE           |
 
 The location pointer on offset ```0x030``` of the player data structure
 points to the address of the moth or hangar that the player
@@ -26,7 +26,7 @@ is currently located. If the player is in a moth located in a hangar,
 then the moth's address will be pointed to. If the player is on foot
 in a hangar, then the hangar's address will be pointed to. Dead players
 are teleported to the Limbo! hangar, where they remain on foot. For the
-player status variable on offset ```0x058```, a value of 0 means the player
+player status variable on offset ```0x02C```, a value of 0 means the player
 is dead, a value of 1 indicates the player is in a moth, a value of 2 means
 the player is on foot in a hangar, a value of 3 means the player is in a
 monorail car, a value of 4 means the player is awaiting a monorail car,
