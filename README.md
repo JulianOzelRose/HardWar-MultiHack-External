@@ -35,8 +35,8 @@ player is awaiting a monorail car, and a value of 5 means the player is in a wal
 ## Moth data structure ##
 | **Offset**    | **Variable**    | **Type**      |
 | :---          | :---            | :---          |
-| 0x0B8         | systemUpgrades1 | DWORD         |
-| 0x0BC         | systemUpgrades2 | DWORD         |
+| 0x0B8         | sysUpgrades1    | DWORD         |
+| 0x0BC         | sysUpgrades2    | DWORD         |
 | 0x1D0         | hangar*         | Pointer       |
 | 0x1D4         | status          | DWORD         |
 | 0x1D8         | owner*          | Pointer       |
@@ -50,15 +50,15 @@ player is awaiting a monorail car, and a value of 5 means the player is in a wal
 | 0x24C         | weapon2Ammo     | Integer       |
 | 0x250         | weapon3Ammo     | Integer       |
 | 0x254         | weapon4Ammo     | Integer       |
-| 0x294         | shields         | DWORD         |
-| 0x298         | engineDamage    | DWORD         |
 | 0x2DC         | pilot*          | Pointer       |
 | 0x2E0         | passenger*      | Pointer       |
 | 0x2E4         | autopilotStatus | BYTE          |
-| 0x29C         | structureDamage | DWORD         |
-| 0x2A0         | cpuDamage       | DWORD         |
-| 0x2A4         | powerDamage     | DWORD         |
-| 0x2A8         | weaponsDamage   | DWORD         |
+| 0x294         | shields         | DWORD         |
+| 0x298         | engineDmg       | DWORD         |
+| 0x29C         | structureDmg    | DWORD         |
+| 0x2A0         | cpuDmg          | DWORD         |
+| 0x2A4         | powerDmg        | DWORD         |
+| 0x2A8         | weaponsDmg      | DWORD         |
 | 0x368         | numFlares       | Integer       |
 | 0x378         | numChaff        | Integer       |
 | 0x37C         | numShells       | Integer       |
