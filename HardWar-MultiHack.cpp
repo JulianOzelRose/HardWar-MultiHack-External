@@ -38,6 +38,7 @@ int main()
 	const DWORD MAX_DMG = 0x4000;
 	const DWORD MAX_THRUST = 0x4000;
 	const DWORD MAX_HEALTH = 0x0;
+	const DWORD MIN_THRUST = 0x0;
 	const DWORD NO_STALL = 0x0;
 	const DWORD TYPE_MOTH = 0x3FFF;
 	const DWORD TYPE_BLDG = 0x3E8;
@@ -83,6 +84,10 @@ int main()
 	DWORD newThrust = MAX_THRUST * 6;
 	BYTE playerStatus = 2;
 	int cash;
+
+	// Toggle variables
+	bool bSpeedHack = FALSE;
+	bool bInstakill = TRUE;
 	
 	system("color A");
 	std::cout << "HardWar-MultiHack" << std::endl;
@@ -108,11 +113,13 @@ int main()
 				hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, processId);
 				moduleBase = GetModuleBaseAddress(processId, L"HardwarW.exe");
 				dynamicPtrBaseAddress = moduleBase + playerBase;
+				bSpeedHack = FALSE;
+				bInstakill = TRUE;
 				std::cout << "Process found! Running..." << std::endl;
 			}
 		}
 		
-		// Update player, moth & target addresses
+		// Update addresses
 		thrustAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, thrustOffsets);
 		shieldAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, shieldOffsets);
 		cashAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, cashOffset);
@@ -129,42 +136,86 @@ int main()
 		mothStatusAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, mothStatusOffsets);
 		playerAddress = FindDmaAddress(hProcess, dynamicPtrBaseAddress, {0});
 
-		// Update player & target status
+		// Update values
 		ReadProcessMemory(hProcess, (BYTE*)playerStatusAddress, &playerStatus, sizeof(playerStatus), nullptr);
 		ReadProcessMemory(hProcess, (BYTE*)targetStatusAddress, &targetStatus, sizeof(targetStatus), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)mothStatusAddress, &mothStatus, sizeof(mothStatus), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)thrustAddress, &thrust, sizeof(thrust), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)shieldAddress, &shields, sizeof(shields), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)structureDmgAddress, &structureDmg, sizeof(structureDmg), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)engineDmgAddress, &engineDmg, sizeof(engineDmg), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)cpuDmgAddress, &cpuDmg, sizeof(cpuDmg), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)powerDmgAddress, &powerDmg, sizeof(powerDmg), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)weaponsDmgAddress, &weaponsDmg, sizeof(weaponsDmg), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)targetTypeAddress, &targetType, sizeof(targetType), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &targetStructureDmg, sizeof(targetStructureDmg), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
+		ReadProcessMemory(hProcess, (BYTE*)cashAddress, &cash, sizeof(cash), nullptr);
 
+		// Toggle Instakill
+		if (GetAsyncKeyState(VK_DELETE) & 1)
+		{
+			bInstakill = !bInstakill;
+
+			std::cout << "Instakill: ";
+
+			if (bInstakill)
+			{
+				std::cout << "ON" << std::endl;
+			}
+
+			if (!bInstakill)
+			{
+				std::cout << "OFF" << std::endl;
+			}
+		}
+
+		// Toggle SpeedHack
+		if (GetAsyncKeyState(VK_END) & 1)
+		{
+			bSpeedHack = !bSpeedHack;
+
+			std::cout << "Speedhack: ";
+
+			if (bSpeedHack)
+			{
+				WriteProcessMemory(hProcess, (BYTE*)thrustAddress, &newThrust, sizeof(newThrust), nullptr);
+				std::cout << "ON" << std::endl;
+			}
+
+			if (!bSpeedHack)
+			{
+				WriteProcessMemory(hProcess, (BYTE*)thrustAddress, &MIN_THRUST, sizeof(MIN_THRUST), nullptr);
+				std::cout << "OFF" << std::endl;
+			}
+		}
+		
 		// Invincibility
-		ReadProcessMemory(hProcess, (BYTE*)shieldAddress, &shields, sizeof(shields), nullptr);	
 		if ((shields < MAX_SHIELDS) && (playerStatus == IN_MOTH))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)shieldAddress, &MAX_SHIELDS, sizeof(MAX_SHIELDS), nullptr);
 			std::cout << "Damage detected - Shields restored to FULL" << std::endl;
 		}
-		ReadProcessMemory(hProcess, (BYTE*)structureDmgAddress, &structureDmg, sizeof(structureDmg), nullptr);
 		if ((structureDmg > MAX_HEALTH) && (playerStatus == IN_MOTH))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)structureDmgAddress, &MAX_HEALTH, sizeof(MAX_HEALTH), nullptr);
 			std::cout << "Damage detected - Structure health restored to FULL" << std::endl;
 		}
-		ReadProcessMemory(hProcess, (BYTE*)engineDmgAddress, &engineDmg, sizeof(engineDmg), nullptr);
 		if ((engineDmg > MAX_HEALTH) && (playerStatus == IN_MOTH))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)engineDmgAddress, &MAX_HEALTH, sizeof(MAX_HEALTH), nullptr);
 			std::cout << "Damage detected - Engine health restored to FULL" << std::endl;
 		}
-		ReadProcessMemory(hProcess, (BYTE*)cpuDmgAddress, &cpuDmg, sizeof(cpuDmg), nullptr);
 		if ((cpuDmg > MAX_HEALTH) && (playerStatus == IN_MOTH))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)cpuDmgAddress, &MAX_HEALTH, sizeof(MAX_HEALTH), nullptr);
 			std::cout << "Damage detected - CPU health restored to FULL" << std::endl;
 		}
-		ReadProcessMemory(hProcess, (BYTE*)powerDmgAddress, &powerDmg, sizeof(powerDmg), nullptr);
 		if ((powerDmg > MAX_HEALTH) && (playerStatus == IN_MOTH))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)powerDmgAddress, &MAX_HEALTH, sizeof(MAX_HEALTH), nullptr);
 			std::cout << "Damage detected - Power health restored to FULL" << std::endl;
 		}
-		ReadProcessMemory(hProcess, (BYTE*)weaponsDmgAddress, &weaponsDmg, sizeof(weaponsDmg), nullptr);
 		if ((weaponsDmg > MAX_HEALTH) && (playerStatus == IN_MOTH))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)weaponsDmgAddress, &MAX_HEALTH, sizeof(MAX_HEALTH), nullptr);
@@ -172,23 +223,19 @@ int main()
 		}
 
 		// Instakill targeted pilot
-		ReadProcessMemory(hProcess, (BYTE*)targetTypeAddress, &targetType, sizeof(targetType), nullptr);
-		ReadProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &targetStructureDmg, sizeof(targetStructureDmg), nullptr);
-		if ((targetType == TYPE_MOTH) && (targetStructureDmg != MAX_DMG) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
+		if ((bInstakill) && (targetType == TYPE_MOTH) && (targetStructureDmg != MAX_DMG) && (playerStatus == IN_MOTH) && (targetStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)targetStructureDmgAddress, &MAX_DMG, sizeof(MAX_DMG), nullptr);
 			std::cout << "Pilot detected and destroyed" << std::endl;
 		}
 
 		// Speedhack
-		ReadProcessMemory(hProcess, (BYTE*)thrustAddress, &thrust, sizeof(thrust), nullptr);
-		if ((playerStatus == IN_MOTH) && (mothStatus != IN_HANGAR))
+		if ((bSpeedHack) && (mothStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)thrustAddress, &newThrust, sizeof(newThrust), nullptr);
 		}
 
 		// Stall negation
-		ReadProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &stallWarningLvl, sizeof(stallWarningLvl), nullptr);
 		if ((stallWarningLvl > NO_STALL) && (playerStatus == IN_MOTH) && (mothStatus != IN_HANGAR))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)stallWarningLvlAddress, &NO_STALL, sizeof(NO_STALL), nullptr);
@@ -196,7 +243,6 @@ int main()
 		}
 
 		// Infinite cash
-		ReadProcessMemory(hProcess, (BYTE*)cashAddress, &cash, sizeof(cash), nullptr);
 		if ((cash < MAX_CASH) && (playerAddress != NULL))
 		{
 			WriteProcessMemory(hProcess, (BYTE*)cashAddress, &MAX_CASH, sizeof(MAX_CASH), nullptr);
