@@ -2,7 +2,8 @@
 This program only modifies client sided variables. It cannot modify server sided variables,
 so it will not work on a networked game, unless it is run directly by the host. Works with
 game version UIM6. Includes invincibility, speedhack, infinite cash, instakill target,
-and stall negation. For educational purposes only.
+and stall negation. The ```DELETE``` key toggles instakill, and the ```INSERT``` key toggles
+the speedhack. For educational purposes only.
 
 # Data structures of HardWar UIM6
 
