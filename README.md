@@ -36,8 +36,6 @@ player is awaiting a monorail car, and a value of 5 means the player is in a wal
 ## Moth data structure ##
 | **Offset**    | **Variable**    | **Type**      |
 | :---          | :---            | :---          |
-| 0x0B8         | sysUpgrades1    | DWORD         |
-| 0x0BC         | sysUpgrades2    | DWORD         |
 | 0x1D0         | hangar*         | Pointer       |
 | 0x1D4         | status          | DWORD         |
 | 0x1D8         | owner*          | Pointer       |
