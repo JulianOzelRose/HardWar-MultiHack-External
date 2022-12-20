@@ -118,6 +118,7 @@ stored on offset ```0x004``` simply holds the quantity of the item.
 I credit Guided Hacking for my knowledge of game hacking. They have very in-depth tutorials and guides
 on how to create your own cheat tables and trainers from scratch. I highly reccommend purchasing a subscription
 if you are interested in learning game hacking. Below are links to some of the guides I used to help me create this program.
+* https://guidedhacking.com/threads/ghb1-start-here-beginner-guide-to-game-hacking.5911/
 * https://guidedhacking.com/threads/ghb0-game-hacking-bible-introduction.14450/
 * https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-1-external.10897/
 * https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-2-external-v2.12000/
