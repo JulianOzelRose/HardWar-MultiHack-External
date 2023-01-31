@@ -2,8 +2,13 @@
 This program only modifies client sided variables. It cannot modify server sided variables,
 so it will not work on a networked game, unless it is run directly by the host. Works with
 game version UIM6. Includes invincibility, speedhack, infinite cash, instakill target,
-and stall negation. The ```DELETE``` key toggles instakill, and the ```INSERT``` key toggles
-the speedhack. For educational purposes only.
+and stall negation. For educational purposes only.
+
+To download the hack, navigate to the ```x64/Release``` folder of this repo, then download
+```HardWar-MultiHack.exe```. You can run the .exe from anywhere on your computer, but it must
+be run with administrator priveleges. The hack will automatically detect and hook itself onto
+the HardWar process. Once enabled in-game, the ```DELETE``` key toggles instakill, and the
+```INSERT``` key toggles the speedhack.
 
 # Data structures of HardWar UIM6
 
