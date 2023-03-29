@@ -21,10 +21,10 @@ in the tables below.
 ## Player data structure ##
 | **Offset**     | **Variable**    | **Type**       |
 | :---           | :---            | :---           |
-| 0x004          | name            | String[32]     |
-| 0x02C          | status          | Integer        |
-| 0x030          | location*       | Pointer        |
-| 0x03C          | cash            | Integer        |
+| 0x004          | Name            | String[32]     |
+| 0x02C          | Status          | Integer        |
+| 0x030          | Location        | Pointer        |
+| 0x03C          | Cash            | Integer        |
 
 The location pointer on offset ```0x030``` of the player data structure
 points to the address of the moth or hangar that the player
@@ -39,35 +39,36 @@ player is awaiting a monorail car, and a value of 5 means the player is in a wal
 
 
 ## Moth data structure ##
-| **Offset**    | **Variable**    | **Type**      |
-| :---          | :---            | :---          |
-| 0x1D0         | hangar*         | Pointer       |
-| 0x1D4         | status          | DWORD         |
-| 0x1D8         | owner*          | Pointer       |
-| 0x1F0         | target*         | Pointer       |
-| 0x1F4         | droneType       | Integer       |
-| 0x200         | engineNum       | Integer       |
-| 0x204         | cellNum         | Integer       |
-| 0x208         | podType         | Integer       |
-| 0x20C         | currentWeapon   | Integer       |
-| 0x248         | weapon1Ammo     | Integer       |
-| 0x24C         | weapon2Ammo     | Integer       |
-| 0x250         | weapon3Ammo     | Integer       |
-| 0x254         | weapon4Ammo     | Integer       |
-| 0x2DC         | pilot*          | Pointer       |
-| 0x2E0         | passenger*      | Pointer       |
-| 0x2E4         | autopilotStatus | BYTE          |
-| 0x294         | shields         | DWORD         |
-| 0x298         | engineDmg       | DWORD         |
-| 0x29C         | structureDmg    | DWORD         |
-| 0x2A0         | cpuDmg          | DWORD         |
-| 0x2A4         | powerDmg        | DWORD         |
-| 0x2A8         | weaponsDmg      | DWORD         |
-| 0x368         | numFlares       | Integer       |
-| 0x378         | numChaff        | Integer       |
-| 0x37C         | numShells       | Integer       |
-| 0x390         | stallWarningLvl | Integer       |
-| 0x438         | thrust          | DWORD         |
+| **Offset**    | **Variable**     | **Type**      |
+| :---          | :---             | :---          |
+| 0x1D0         | Hangar           | Pointer       |
+| 0x1D4         | Status           | DWORD         |
+| 0x1D8         | Owner            | Pointer       |
+| 0x1EC         | Target Type      | Integer       |
+| 0x1F0         | Target           | Pointer       |
+| 0x1F4         | Drone Type       | Integer       |
+| 0x200         | Engine Number    | Integer       |
+| 0x204         | Cell Number      | Integer       |
+| 0x208         | Pod Type         | Integer       |
+| 0x20C         | Current Weapon   | Integer       |
+| 0x248         | Weapon 1 Ammo    | Integer       |
+| 0x24C         | Weapon 2 Ammo    | Integer       |
+| 0x250         | Weapon 3 Ammo    | Integer       |
+| 0x254         | Weapon 4 Ammo    | Integer       |
+| 0x2DC         | Pilot            | Pointer       |
+| 0x2E0         | Passenger        | Pointer       |
+| 0x2E4         | Autopilot Status | BYTE          |
+| 0x294         | Shields          | DWORD         |
+| 0x298         | Engine Damage    | DWORD         |
+| 0x29C         | Structure Damage | DWORD         |
+| 0x2A0         | CPU Damage       | DWORD         |
+| 0x2A4         | Power Damage     | DWORD         |
+| 0x2A8         | Weapons Damage   | DWORD         |
+| 0x368         | Flares           | Integer       |
+| 0x378         | Chaff            | Integer       |
+| 0x37C         | Shells           | Integer       |
+| 0x390         | Stall Level      | Integer       |
+| 0x438         | Thrust           | DWORD         |
 
 The hangar pointer on offset ```0x1D0``` of the moth data structure
 points to the address of the hangar that the moth is currently parked
@@ -85,18 +86,18 @@ infrared system versions.
 ## Hangar data structure ##
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
-| 0x004         | terminalName     | String[32]    |
-| 0x010         | displayName      | String[32]    |
-| 0x034         | clearanceLvl     | Integer       |
-| 0x03C         | enemiesList*     | Pointer       |
-| 0x048         | owner*           | Pointer       |
-| 0x8BC         | cashHeld         | Integer       |
-| 0x8D8         | bay1*            | Pointer       |
-| 0x8DC         | bay2*            | Pointer       |
-| 0x8E0         | bay3*            | Pointer       |
-| 0x8E4         | bay4*            | Pointer       |
-| 0x8E8         | bay5*            | Pointer       |
-| 0x8EC         | bay6*            | Pointer       |
+| 0x004         | Terminal Name    | String[32]    |
+| 0x010         | Display Name     | String[32]    |
+| 0x034         | Clearance Level  | Integer       |
+| 0x03C         | Enemies List     | Pointer       |
+| 0x048         | Owner            | Pointer       |
+| 0x8BC         | Cash Held        | Integer       |
+| 0x8D8         | Bay 1            | Pointer       |
+| 0x8DC         | Bay 2            | Pointer       |
+| 0x8E0         | Bay 3            | Pointer       |
+| 0x8E4         | Bay 4            | Pointer       |
+| 0x8E8         | Bay 5            | Pointer       |
+| 0x8EC         | Bay 6            | Pointer       |
 
 The variable on offset ```0x004``` of the hangar data structure holds the name of the hangar,
 as viewed from the game's perspective. The next variable on offset ```0x010``` holds the
@@ -110,9 +111,9 @@ of the moth that is currently in that bay.
 ## Cargo data structure ##
 | **Offset**      | **Variable**     | **Type**      |
 | :---            | :---             | :---          |
-| 0x004           | quantity         | Integer       |
-| 0x008           | status           | Integer       |
-| 0x00C           | location*        | Pointer       |
+| 0x004           | Quantity         | Integer       |
+| 0x008           | Status           | Integer       |
+| 0x00C           | Location         | Pointer       |
 
 The status variable on offset ```0x008``` of the cargo structure is set to 0 if the cargo
 is located outdoors, and gets set to 1 if the cargo is located in a cargo pod. The pointer
