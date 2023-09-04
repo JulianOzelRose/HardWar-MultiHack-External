@@ -4,11 +4,11 @@ so it will not work on a networked game, unless it is run directly by the host. 
 game version UIM6. Includes invincibility, speedhack, infinite cash, instakill target,
 and stall negation. For educational purposes only.
 
-To download the hack, navigate to the ```Release``` folder of this repo, then download
-```HardWar-MultiHack.exe```. You can run the .exe from anywhere on your computer, but it must
+To download the hack, navigate to the **Release** folder of this repo, then download
+**HardWar-MultiHack.exe**. You can run the .exe from anywhere on your computer, but it must
 be run with administrator priveleges. The hack will automatically detect and hook itself onto
-the HardWar process. Once enabled in-game, the ```DELETE``` key toggles instakill, and the
-```INSERT``` key toggles the speedhack.
+the HardWar process. Once enabled in-game, the **DELETE** key toggles instakill, and the
+**INSERT** key toggles the speedhack.
 
 # Data structures of HardWar UIM6
 
@@ -19,12 +19,12 @@ Memory mappings of the player, moth, hangar, and cargo data structures can be fo
 in the tables below.
 
 ## Player data structure ##
-| **Offset**     | **Variable**    | **Type**       |
-| :---           | :---            | :---           |
-| 0x004          | Name            | String[32]     |
-| 0x02C          | Status          | Integer        |
-| 0x030          | Location        | Pointer        |
-| 0x03C          | Cash            | Integer        |
+| **Offset**     | **Variable**    | **Type**   |
+| :---           | :---            | :---       |
+| 0x004          | Name            | String     |
+| 0x02C          | Status          | Integer    |
+| 0x030          | Location        | Pointer    |
+| 0x03C          | Cash            | Integer    |
 
 The location pointer on offset ```0x030``` of the player data structure
 points to the address of the moth or hangar that the player
@@ -84,20 +84,20 @@ infrared system versions.
 
 
 ## Hangar data structure ##
-| **Offset**    | **Variable**     | **Type**      |
-| :---          | :---             | :---          |
-| 0x004         | Terminal Name    | String[32]    |
-| 0x010         | Display Name     | String[32]    |
-| 0x034         | Clearance Level  | Integer       |
-| 0x03C         | Enemies List     | Pointer       |
-| 0x048         | Owner            | Pointer       |
-| 0x8BC         | Cash Held        | Integer       |
-| 0x8D8         | Bay 1            | Pointer       |
-| 0x8DC         | Bay 2            | Pointer       |
-| 0x8E0         | Bay 3            | Pointer       |
-| 0x8E4         | Bay 4            | Pointer       |
-| 0x8E8         | Bay 5            | Pointer       |
-| 0x8EC         | Bay 6            | Pointer       |
+| **Offset**    | **Variable**     | **Type**  |
+| :---          | :---             | :---      |
+| 0x004         | Terminal Name    | String    |
+| 0x010         | Display Name     | String    |
+| 0x034         | Clearance Level  | Integer   |
+| 0x03C         | Enemies List     | Pointer   |
+| 0x048         | Owner            | Pointer   |
+| 0x8BC         | Cash Held        | Integer   |
+| 0x8D8         | Bay 1            | Pointer   |
+| 0x8DC         | Bay 2            | Pointer   |
+| 0x8E0         | Bay 3            | Pointer   |
+| 0x8E4         | Bay 4            | Pointer   |
+| 0x8E8         | Bay 5            | Pointer   |
+| 0x8EC         | Bay 6            | Pointer   |
 
 The variable on offset ```0x004``` of the hangar data structure holds the name of the hangar,
 as viewed from the game's perspective. The next variable on offset ```0x010``` holds the
