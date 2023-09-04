@@ -24,6 +24,7 @@
     <ProjectGuid>{2525cc5e-9bdf-406d-9965-a86a922e5340}</ProjectGuid>
     <RootNamespace>HardWarMultiHack</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>HardWar-MultiHack-External</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,7 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="HackProcess.cpp" />
-    <ClCompile Include="HardWar-MultiHack.cpp" />
+    <ClCompile Include="HardWar-MultiHack-External.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HackProcess.h" />
