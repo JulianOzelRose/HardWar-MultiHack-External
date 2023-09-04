@@ -4,11 +4,11 @@ so it will not work on a networked game, unless it is run directly by the host. 
 game version UIM6. Includes invincibility, speedhack, infinite cash, instakill target,
 and stall negation. For educational purposes only.
 
-To download the hack, navigate to the **Release** folder of this repo, then download
-**HardWar-MultiHack-External.exe**. You can run the .exe from anywhere on your computer, but it must
-be run with administrator priveleges. The hack will automatically detect and hook itself onto
-the HardWar process. Once enabled in-game, the **DELETE** key toggles instakill, and the
-**INSERT** key toggles the speedhack.
+To download the hack, navigate to the [Release](https://github.com/JulianOzelRose/HardWar-MultiHack-External/tree/master/Release)
+folder of this repo, then download ```HardWar-MultiHack-External.exe```. You can run the .exe from anywhere on your computer,
+but it must be run with administrator priveleges. The hack will automatically detect and hook itself onto
+the HardWar process. Once enabled in-game, the ```DELETE``` key toggles instakill, and the
+```INSERT``` key toggles the speedhack.
 
 # Data structures of HardWar UIM6
 
