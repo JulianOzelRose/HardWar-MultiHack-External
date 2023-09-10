@@ -10,7 +10,7 @@ but it must be run with administrator priveleges. The hack will automatically de
 the HardWar process. Once enabled in-game, the ```DELETE``` key toggles instakill, and the
 ```INSERT``` key toggles the speedhack.
 
-# Data structures of HardWar UIM6
+# Data structures of HardWar
 
 The player entity pointer is stored on offset
 ```0x11D9AC``` from the module's base address. The player's cash variable,
@@ -18,7 +18,7 @@ for example, would be stored on the address at ```moduleBase + 0x11D9AC + 0x03C`
 Memory mappings of the player, moth, hangar, and cargo data structures can be found
 in the tables below.
 
-## Player data structure ##
+#### Player ####
 | **Offset**     | **Variable**    | **Type**   |
 | :---           | :---            | :---       |
 | 0x004          | Name            | String     |
@@ -37,8 +37,7 @@ player is in a moth, a value of 2 means the player is on foot in a hangar,
 a value of 3 means the player is in a monorail car, a value of 4 means the
 player is awaiting a monorail car, and a value of 5 means the player is in a walkway.
 
-
-## Moth data structure ##
+#### Moth ####
 | **Offset**    | **Variable**     | **Type**      |
 | :---          | :---             | :---          |
 | 0x1D0         | Hangar           | Pointer       |
@@ -82,8 +81,7 @@ all have maximum values of 0x4000 (or 16384 in decimal). The hex value on
 The hex value on ```0x0BC``` stores the navigation, radar, target, and
 infrared system versions.
 
-
-## Hangar data structure ##
+#### Hangar ####
 | **Offset**    | **Variable**     | **Type**  |
 | :---          | :---             | :---      |
 | 0x004         | Terminal Name    | String    |
@@ -107,8 +105,7 @@ to be restricted from human pilots. The hangar bay pointers on offsets ```0x8D8`
 ```0x8DC```, ```0x8E0```, ```0x8E4```, ```0x8E8```, and ```0x8EC``` point to the address
 of the moth that is currently in that bay.
 
-
-## Cargo data structure ##
+#### Cargo ####
 | **Offset**      | **Variable**     | **Type**      |
 | :---            | :---             | :---          |
 | 0x004           | Quantity         | Integer       |
@@ -124,8 +121,8 @@ stored on offset ```0x004``` simply holds the quantity of the item.
 I credit Guided Hacking for my knowledge of game hacking. They have very in-depth tutorials and guides
 on how to create your own cheat tables and trainers from scratch. I highly reccommend purchasing a subscription
 if you are interested in learning game hacking. Below are links to some of the guides I used to help me create this program.
-* https://guidedhacking.com/threads/ghb1-start-here-beginner-guide-to-game-hacking.5911/
-* https://guidedhacking.com/threads/ghb0-game-hacking-bible-introduction.14450/
-* https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-1-external.10897/
-* https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-2-external-v2.12000/
-* https://guidedhacking.com/threads/finddmaaddy-c-multilevel-pointer-function.6292/
+* [GHB1 - Start Here Beginner Guide to Game Hacking](https://guidedhacking.com/threads/ghb1-start-here-beginner-guide-to-game-hacking.5911/)
+* [Guide - GHB0 - Game Hacking Bible Introduction](https://guidedhacking.com/threads/ghb0-game-hacking-bible-introduction.14450/)
+* [How to Hack Any Game Tutorial C++ Trainer #1 - External](https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-1-external.10897/)
+* [How to Hack Any Game Tutorial C++ Trainer #2 - External v2](https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-2-external-v2.12000/)
+* [FindDMAAddy - C++ Multilevel Pointer Function](https://guidedhacking.com/threads/finddmaaddy-c-multilevel-pointer-function.6292/)
