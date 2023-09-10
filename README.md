@@ -10,13 +10,11 @@ but it must be run with administrator priveleges. The hack will automatically de
 the HardWar process. Once enabled in-game, the ```DELETE``` key toggles instakill, and the
 ```INSERT``` key toggles the speedhack.
 
-# Data structures of HardWar
+# Data structures
 
-The player entity pointer is stored on offset
-```0x11D9AC``` from the module's base address. The player's cash variable,
-for example, would be stored on the address at ```moduleBase + 0x11D9AC + 0x03C```.
-Memory mappings of the player, moth, hangar, and cargo data structures can be found
-in the tables below.
+The player entity pointer is stored on offset ```0x11D9AC``` from the module's base address. The player's cash variable,
+for example, would be stored on the address at ```moduleBase + 0x11D9AC + 0x03C```. Memory mappings of the player, moth,
+hangar, and cargo data structures can be found in the tables below.
 
 #### Player ####
 | **Offset**     | **Variable**    | **Type**   |
