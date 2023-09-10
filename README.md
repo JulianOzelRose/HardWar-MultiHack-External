@@ -10,7 +10,7 @@ but it must be run with administrator priveleges. The hack will automatically de
 the HardWar process. Once enabled in-game, the ```DELETE``` key toggles instakill, and the
 ```INSERT``` key toggles the speedhack.
 
-# Data structures
+## Data structures
 
 The player entity pointer is stored on offset ```0x11D9AC``` from the module's base address. The player's cash variable,
 for example, would be stored on the address at ```moduleBase + 0x11D9AC + 0x03C```. Memory mappings of the player, moth,
@@ -115,7 +115,7 @@ is located outdoors, and gets set to 1 if the cargo is located in a cargo pod. T
 on offset ```0x00C``` points to the address of the moth of which it is stored in. The variable
 stored on offset ```0x004``` simply holds the quantity of the item.
 
-# Sources
+## Sources
 I credit Guided Hacking for my knowledge of game hacking. They have very in-depth tutorials and guides
 on how to create your own cheat tables and trainers from scratch. I highly reccommend purchasing a subscription
 if you are interested in learning game hacking. Below are links to some of the guides I used to help me create this program.
