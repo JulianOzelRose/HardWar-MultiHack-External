@@ -17,12 +17,12 @@ for example, would be stored on the address at ```moduleBase + 0x11D9AC + 0x03C`
 hangar, and cargo data structures can be found in the tables below.
 
 #### Player ####
-| **Offset**     | **Variable**    | **Type**   |
-| :---           | :---            | :---       |
-| 0x004          | Name            | String     |
-| 0x02C          | Status          | Integer    |
-| 0x030          | Location        | Pointer    |
-| 0x03C          | Cash            | Integer    |
+| **Offset** | **Type** | **Variable** |
+| :---       | :---     | :---         |
+| 0x004      | String   | Name         |
+| 0x02C      | Integer  | Status       |
+| 0x030      | Pointer  | Location     |
+| 0x03C      | Integer  | Cash         |
 
 The location pointer on offset ```0x030``` of the player data structure
 points to the address of the moth or hangar that the player
@@ -36,36 +36,36 @@ a value of 3 means the player is in a monorail car, a value of 4 means the
 player is awaiting a monorail car, and a value of 5 means the player is in a walkway.
 
 #### Moth ####
-| **Offset**    | **Variable**     | **Type**      |
-| :---          | :---             | :---          |
-| 0x1D0         | Hangar           | Pointer       |
-| 0x1D4         | Status           | DWORD         |
-| 0x1D8         | Owner            | Pointer       |
-| 0x1EC         | Target Type      | Integer       |
-| 0x1F0         | Target           | Pointer       |
-| 0x1F4         | Drone Type       | Integer       |
-| 0x200         | Engine Number    | Integer       |
-| 0x204         | Cell Number      | Integer       |
-| 0x208         | Pod Type         | Integer       |
-| 0x20C         | Current Weapon   | Integer       |
-| 0x248         | Weapon 1 Ammo    | Integer       |
-| 0x24C         | Weapon 2 Ammo    | Integer       |
-| 0x250         | Weapon 3 Ammo    | Integer       |
-| 0x254         | Weapon 4 Ammo    | Integer       |
-| 0x2DC         | Pilot            | Pointer       |
-| 0x2E0         | Passenger        | Pointer       |
-| 0x2E4         | Autopilot Status | BYTE          |
-| 0x294         | Shields          | DWORD         |
-| 0x298         | Engine Damage    | DWORD         |
-| 0x29C         | Structure Damage | DWORD         |
-| 0x2A0         | CPU Damage       | DWORD         |
-| 0x2A4         | Power Damage     | DWORD         |
-| 0x2A8         | Weapons Damage   | DWORD         |
-| 0x368         | Flares           | Integer       |
-| 0x378         | Chaff            | Integer       |
-| 0x37C         | Shells           | Integer       |
-| 0x390         | Stall Level      | Integer       |
-| 0x438         | Thrust           | DWORD         |
+| **Offset** | **Type**  | **Variable**       |
+| :---       | :---      | :---               |
+| 0x1D0      | Pointer   | Hangar             |
+| 0x1D4      | DWORD     | Status             |
+| 0x1D8      | Pointer   | Owner              |
+| 0x1EC      | Integer   | Target Type        |
+| 0x1F0      | Pointer   | Target             |
+| 0x1F4      | Integer   | Drone Type         |
+| 0x200      | Integer   | Engine Number      |
+| 0x204      | Integer   | Cell Number        |
+| 0x208      | Integer   | Pod Type           |
+| 0x20C      | Integer   | Current Weapon     |
+| 0x248      | Integer   | Weapon 1 Ammo      |
+| 0x24C      | Integer   | Weapon 2 Ammo      |
+| 0x250      | Integer   | Weapon 3 Ammo      |
+| 0x254      | Integer   | Weapon 4 Ammo      |
+| 0x2DC      | Pointer   | Pilot              |
+| 0x2E0      | Pointer   | Passenger          |
+| 0x2E4      | BYTE      | Autopilot Status   |
+| 0x294      | DWORD     | Shields            |
+| 0x298      | DWORD     | Engine Damage      |
+| 0x29C      | DWORD     | Structure Damage   |
+| 0x2A0      | DWORD     | CPU Damage         |
+| 0x2A4      | DWORD     | Power Damage       |
+| 0x2A8      | DWORD     | Weapons Damage     |
+| 0x368      | Integer   | Flares             |
+| 0x378      | Integer   | Chaff              |
+| 0x37C      | Integer   | Shells             |
+| 0x390      | Integer   | Stall Level        |
+| 0x438      | DWORD     | Thrust             |
 
 The hangar pointer on offset ```0x1D0``` of the moth data structure
 points to the address of the hangar that the moth is currently parked
@@ -80,20 +80,20 @@ The hex value on ```0x0BC``` stores the navigation, radar, target, and
 infrared system versions.
 
 #### Hangar ####
-| **Offset**    | **Variable**     | **Type**  |
-| :---          | :---             | :---      |
-| 0x004         | Terminal Name    | String    |
-| 0x010         | Display Name     | String    |
-| 0x034         | Clearance Level  | Integer   |
-| 0x03C         | Enemies List     | Pointer   |
-| 0x048         | Owner            | Pointer   |
-| 0x8BC         | Cash Held        | Integer   |
-| 0x8D8         | Bay 1            | Pointer   |
-| 0x8DC         | Bay 2            | Pointer   |
-| 0x8E0         | Bay 3            | Pointer   |
-| 0x8E4         | Bay 4            | Pointer   |
-| 0x8E8         | Bay 5            | Pointer   |
-| 0x8EC         | Bay 6            | Pointer   |
+| **Offset** | **Type**  | **Variable**     |
+| :---       | :---      | :---             |
+| 0x004      | String    | Terminal Name    |
+| 0x010      | String    | Display Name     |
+| 0x034      | Integer   | Clearance Level  |
+| 0x03C      | Pointer   | Enemies List     |
+| 0x048      | Pointer   | Owner            |
+| 0x8BC      | Integer   | Cash Held        |
+| 0x8D8      | Pointer   | Bay 1            |
+| 0x8DC      | Pointer   | Bay 2            |
+| 0x8E0      | Pointer   | Bay 3            |
+| 0x8E4      | Pointer   | Bay 4            |
+| 0x8E8      | Pointer   | Bay 5            |
+| 0x8EC      | Pointer   | Bay 6            |
 
 The variable on offset ```0x004``` of the hangar data structure holds the name of the hangar,
 as viewed from the game's perspective. The next variable on offset ```0x010``` holds the
@@ -104,11 +104,11 @@ to be restricted from human pilots. The hangar bay pointers on offsets ```0x8D8`
 of the moth that is currently in that bay.
 
 #### Cargo ####
-| **Offset**      | **Variable**     | **Type**      |
-| :---            | :---             | :---          |
-| 0x004           | Quantity         | Integer       |
-| 0x008           | Status           | Integer       |
-| 0x00C           | Location         | Pointer       |
+| **Offset** | **Type**  | **Variable** |
+| :---       | :---      | :---         |
+| 0x004      | Integer   | Quantity     |
+| 0x008      | Integer   | Status       |
+| 0x00C      | Pointer   | Location     |
 
 The status variable on offset ```0x008``` of the cargo structure is set to 0 if the cargo
 is located outdoors, and gets set to 1 if the cargo is located in a cargo pod. The pointer
@@ -119,8 +119,8 @@ stored on offset ```0x004``` simply holds the quantity of the item.
 I credit Guided Hacking for my knowledge of game hacking. They have very in-depth tutorials and guides
 on how to create your own cheat tables and trainers from scratch. I highly reccommend purchasing a subscription
 if you are interested in learning game hacking. Below are links to some of the guides I used to help me create this program.
-* [Guide - GHB0 - Game Hacking Bible Introduction](https://guidedhacking.com/threads/ghb0-game-hacking-bible-introduction.14450/)
-* [GHB1 - Start Here Beginner Guide to Game Hacking](https://guidedhacking.com/threads/ghb1-start-here-beginner-guide-to-game-hacking.5911/)
-* [How to Hack Any Game Tutorial C++ Trainer #1 - External](https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-1-external.10897/)
-* [How to Hack Any Game Tutorial C++ Trainer #2 - External v2](https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-2-external-v2.12000/)
-* [FindDMAAddy - C++ Multilevel Pointer Function](https://guidedhacking.com/threads/finddmaaddy-c-multilevel-pointer-function.6292/)
+* [Guided Hacking - Guide - GHB0 - Game Hacking Bible Introduction](https://guidedhacking.com/threads/ghb0-game-hacking-bible-introduction.14450/)
+* [Guided Hacking - GHB1 - Start Here Beginner Guide to Game Hacking](https://guidedhacking.com/threads/ghb1-start-here-beginner-guide-to-game-hacking.5911/)
+* [Guided Hacking - How to Hack Any Game Tutorial C++ Trainer #1 - External](https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-1-external.10897/)
+* [Guided Hacking - How to Hack Any Game Tutorial C++ Trainer #2 - External v2](https://guidedhacking.com/threads/how-to-hack-any-game-tutorial-c-trainer-2-external-v2.12000/)
+* [Guided Hacking - FindDMAAddy - C++ Multilevel Pointer Function](https://guidedhacking.com/threads/finddmaaddy-c-multilevel-pointer-function.6292/)
