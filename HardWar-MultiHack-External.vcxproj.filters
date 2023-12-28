@@ -31,16 +31,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="HardWar-MultiHack.rc">
+    <ResourceCompile Include="HardWar-MultiHack-External.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="hardwar.ico">
+    <Image Include="HardWar.ico">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Release\HardWar-MultiHack-External.exe" />
   </ItemGroup>
 </Project>

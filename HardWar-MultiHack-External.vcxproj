@@ -147,17 +147,17 @@
     <ClCompile Include="HardWar-MultiHack-External.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Release\HardWar-MultiHack-External.exe" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="HackProcess.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="HardWar-MultiHack.rc" />
+    <ResourceCompile Include="HardWar-MultiHack-External.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="hardwar.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Release\HardWar-MultiHack-External.exe" />
+    <Image Include="HardWar.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
