@@ -41,6 +41,7 @@ player is awaiting a monorail car, and a value of 5 means the player is in a wal
 | 0x1D0      | Pointer   | Hangar             |
 | 0x1D4      | DWORD     | Status             |
 | 0x1D8      | Pointer   | Owner              |
+| 0x1E0      | DWORD     | Power              |
 | 0x1EC      | Integer   | Target Type        |
 | 0x1F0      | Pointer   | Target             |
 | 0x1F4      | Integer   | Drone Type         |
@@ -52,15 +53,17 @@ player is awaiting a monorail car, and a value of 5 means the player is in a wal
 | 0x24C      | Integer   | Weapon 2 Ammo      |
 | 0x250      | Integer   | Weapon 3 Ammo      |
 | 0x254      | Integer   | Weapon 4 Ammo      |
-| 0x2DC      | Pointer   | Pilot              |
-| 0x2E0      | Pointer   | Passenger          |
-| 0x2E4      | BYTE      | Autopilot Status   |
 | 0x294      | DWORD     | Shields            |
 | 0x298      | DWORD     | Engine Damage      |
 | 0x29C      | DWORD     | Structure Damage   |
 | 0x2A0      | DWORD     | CPU Damage         |
 | 0x2A4      | DWORD     | Power Damage       |
 | 0x2A8      | DWORD     | Weapons Damage     |
+| 0x2C0      | DWORD     | Max Thrust         |
+| 0x2C8      | Pointer   | Cargo List Head    |
+| 0x2DC      | Pointer   | Pilot              |
+| 0x2E0      | Pointer   | Passenger          |
+| 0x2E4      | BYTE      | Autopilot Status   |
 | 0x368      | Integer   | Flares             |
 | 0x378      | Integer   | Chaff              |
 | 0x37C      | Integer   | Shells             |
@@ -87,6 +90,8 @@ infrared system versions.
 | 0x034      | Integer   | Clearance Level  |
 | 0x03C      | Pointer   | Enemies List     |
 | 0x048      | Pointer   | Owner            |
+| 0x058      | Integer   | Ore Stock        |
+| 0x898      | Integer   | Narcotron Stock  |
 | 0x8BC      | Integer   | Cash Held        |
 | 0x8D8      | Pointer   | Bay 1            |
 | 0x8DC      | Pointer   | Bay 2            |
@@ -101,7 +106,8 @@ display name that is viewed by the player. The clearance level variable
 on offset ```0x034``` can either be set at 0 for unrestricted access, or 16
 to be restricted from human pilots. The hangar bay pointers on offsets ```0x8D8```,
 ```0x8DC```, ```0x8E0```, ```0x8E4```, ```0x8E8```, and ```0x8EC``` point to the address
-of the moth that is currently in that bay.
+of the moth that is currently in that bay. Further item stock stored between ore and
+narcotron. Each stock entry is 6 DWORDs long.
 
 #### Cargo ####
 | **Offset** | **Type**  | **Variable** |
